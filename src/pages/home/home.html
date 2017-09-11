@@ -1,0 +1,36 @@
+
+
+<ion-content>
+  <ion-card *ngFor="let noticia of _noticias.noticias">
+  <img [src]="noticia.imagen"/>
+  <ion-card-content>
+    <ion-card-title>
+      {{noticia.titulo}}
+      </ion-card-title>
+
+  </ion-card-content>
+  <ion-row>
+    <ion-col text-left *ngIf="!lectura">
+      <button ion-button icon-left clear small color="verde" (click)="escuchar(noticia.texto)">
+        <ion-icon name="volume-up"></ion-icon>
+        <div>Escuchar</div>
+      </button>
+    </ion-col>
+    <ion-col text-left *ngIf="lectura">
+      <button ion-button icon-left clear small color="verde" (click)="pausar()">
+        <ion-icon name="volume-up"></ion-icon>
+        <div>pausar</div>
+      </button>
+    </ion-col>
+   <ion-col text-right>
+     <button ion-button icon-left clear small color="verde" (click)="compartir(noticia)">
+       <ion-icon name="share-alt"></ion-icon>
+       <div>Compartir</div>
+     </button>
+   </ion-col>
+ </ion-row>
+</ion-card>
+<ion-infinite-scroll (ionInfinite)="infinito($event)" [enabled]="mas">
+   <ion-infinite-scroll-content></ion-infinite-scroll-content>
+ </ion-infinite-scroll>
+</ion-content>
